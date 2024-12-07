@@ -10,10 +10,11 @@ import NotFound from './Client/Pages/Error/NotFound';
 import DashBoard from './Client/Pages/Admin/DashBoard';
 import PrivateRoutes from './Client/Components/PrivateRoutes';
 import UserProfile from './Client/Pages/Profile/UserProfile';
+import Footer from './Client/Components/Footer';
 
 function App() {
   return (
-    <Router>
+  <Router>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Home' element={<Home />} />
@@ -33,7 +34,8 @@ function App() {
         <Route path='/Profile' element={<UserProfile />} />
         </Route>
       </Routes>
-    </Router>
+    <Footer/>
+  </Router>
   );
 }
 
