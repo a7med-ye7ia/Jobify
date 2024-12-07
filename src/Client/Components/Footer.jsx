@@ -49,14 +49,14 @@ const Footer = () => {
                         placeholder="E-Mail Address"
                         className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    <button className="w-full py-2 bg-blue-400 rounded hover:bg-blue-600">
+                    <button className="w-full py-2 bg-[#3EB489] rounded hover:bg-[#368a71]">
                         Subscribe Now
                     </button>
                 </div>
             </div>
             <div className="mt-8 border-t border-gray-700 pt-4 text-center md:flex md:items-center md:justify-between">
                 <p className="text-sm">
-                    © Copyright Jobify 2024. Designed by yehia...!
+                    © Copyright Jobify 2024. Designed by sief ...!
                 </p>
                 <div className="mt-4 md:mt-0 flex justify-center space-x-4">
                     <a href="#" className="hover:text-gray-400">Privacy & Policy</a>

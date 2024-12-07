@@ -1,7 +1,8 @@
+import Navbar from './componnents/navbar/Navbar';
+import Home from './Client/Pages/Home/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Aboutus from "./Client/Pages/About-Us/Aboutus";
 import Contactus from "./Client/Pages/Contact-Us/Contactus";
-import Home from "./Client/Pages/Home/Home";
 import JobInfo from "./Client/Pages/Job-Info/JobInfo";
 import Jobs from "./Client/Pages/Jobs/Jobs";
 import Signin from "./Client/Pages/Sign-In/Signin";
@@ -35,8 +36,6 @@ function App() {
         </Route>
       </Routes>
     <Footer/>
-  </Router>
-  );
-}
-
+    <Navbar/>
+  </Router>);}
 export default App;
