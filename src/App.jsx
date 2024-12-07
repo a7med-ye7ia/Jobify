@@ -1,10 +1,13 @@
 import React from "react";
-    
+import "./index.css";    
+import Navbar from "./componnents/navbar/Navbar";
+import Home from "./Client/Pages/Home/Home";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>   
+  return <div >
+     <Navbar/>
+     <Home/>
+    </div>   
 }
 
 export default App;
