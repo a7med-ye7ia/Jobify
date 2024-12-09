@@ -1,6 +1,10 @@
 import React from "react";
 import "./Navbar.css";
-import icon from "../../../public/jobify.svg";
+import icon from "../../../../public/jobify.svg";
+/**
+ * The Navbar component renders a navigation bar with logo, links to home, jobs, about and contact pages, and two buttons for login and register.
+ * @returns {JSX.Element} The rendered navbar.
+ */
 const Navbar = () => {
   return (
     <nav className="navbar">
@@ -13,7 +17,9 @@ const Navbar = () => {
       <div className="navbar-center">
         <ul className="nav-links">
           <li>
-            <a href="#home">Home</a>
+            <a href="#home" style={{ color: "#2d8f6f" }}>
+              Home
+            </a>
           </li>
           <li>
             <a href="#jobs">Jobs</a>
