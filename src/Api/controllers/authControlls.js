@@ -1,4 +1,5 @@
-const userModel = require('../models/user.models');
+/* eslint-disable no-undef */
+const userModel = require('../Models/user.models');
 const bcrypt = require('bcrypt')
 
 const newUser = async (req,res)=>{

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express')
 const app = express()
 
@@ -13,11 +14,10 @@ const PORT = 3000;
 
 // routes import
 const authRoutes = require('./routes/authRoutes');
-
-
+const jobRoutes=require('./routes/jobRoutes');
 // routes
 app.use('/auth', authRoutes);
-
+app.use('/job', jobRoutes);
 
 
 const start = async () => {
