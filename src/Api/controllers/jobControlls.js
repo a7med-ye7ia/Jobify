@@ -15,10 +15,7 @@ const newJob = async (req,res)=>{
     {
         return res.send("Please provide the description!").status(400);
     }
-    const existingJob = await jobModel.findOne({title});
-    if(existingJob){
-        return res.send("Jop already exists!").status(400);
-    }
+   
     const job = await jobModel.create(req.body);   
     await job.save();
     res.send({msg:'add successfully',job}).status(201);
