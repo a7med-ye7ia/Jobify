@@ -11,7 +11,7 @@ export const JOB = [
     },
     {
         photo: "/jobIcon/Logo (2).png",
-        time: "12 Minutes Ago",
+        time: "1 Hour Ago",
         title: "Software Engineer",
         company: "ABC Corp",
         location: "New York",
