@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./Client/Components/Navbar/Navbar";
 import Home from "./Client/Pages/Home/Home";
 import Aboutus from "./Client/Pages/About-Us/Aboutus";
 import Contactus from "./Client/Pages/Contact-Us/Contactus";
@@ -9,14 +8,13 @@ import Signin from "./Client/Pages/Sign-In/Signin";
 import Signup from "./Client/Pages/Sign-Up/Signup";
 import NotFound from "./Client/Pages/Error/NotFound";
 import DashBoard from "./Client/Pages/Admin/DashBoard";
-import PrivateRoutes from "./Client/Components/PrivateRoutes";
+import PrivateRoutes from "./Client/Components/PrivateRoute/PrivateRoutes";
 import UserProfile from "./Client/Pages/Profile/UserProfile";
-import Footer from "./Client/Components/Footer";
+import Footer from "./Client/Components/Footer/Footer";
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

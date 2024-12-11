@@ -3,8 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
+  background-color: rgba(0, 0, 0, 1);
   width: 100%;
   top: 0;
   left: 0;
