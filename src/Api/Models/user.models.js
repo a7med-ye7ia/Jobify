@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     jobTitle: { type: String },
+    role: { type: String},
     location: { type: String },
     skills: { type: [String] },
     experience: { type: Number },
