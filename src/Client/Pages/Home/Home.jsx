@@ -2,10 +2,12 @@
   import React from "react";
   import "./Home.css";
   import Category from "./Category";
+import Navbar from "../../Components/Navbar/Navbar";
 
   const Home = () => {
     return (
       <div>
+        <Navbar/>
         <div className="home">
           <div className="hero-section">
             <h1>Find Your Dream Job Today!</h1>

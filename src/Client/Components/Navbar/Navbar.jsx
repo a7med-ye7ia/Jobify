@@ -34,18 +34,18 @@ const Navbar = () => {
       <div className={`navbar-center ${isMenuOpen ? "active" : ""}`}>
         <ul className="nav-links">
           <li>
-            <a href="#home" style={{ color: "#2d8f6f" }}>
+            <a href="/home">
               Home
             </a>
           </li>
           <li>
-            <a href="#jobs">Jobs</a>
+            <a href="/Jobs">Jobs</a>
           </li>
           <li>
-            <a href="#about">About Us</a>
+            <a href="/about-us">About Us</a>
           </li>
           <li>
-            <a href="#contact">Contact Us</a>
+            <a href="/contact-us">Contact Us</a>
           </li>
           <li className="navbar-right active">
             <button className="login-btn">Login</button>
