@@ -16,7 +16,8 @@ const JobSchema=new Schema(
         tags: {type: Array, required: false},
         location: {type: String, required: false},
         skills: {type: Array, required: false},  
-        salary: {type: Number, required: false}
+        salary: {type: Number, required: false},
+        timeadded: {type:String, required: true}
 },{
     timestamps: true
 }
