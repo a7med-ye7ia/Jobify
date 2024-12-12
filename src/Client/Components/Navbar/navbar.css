@@ -1,10 +1,10 @@
+/* الإعدادات الأساسية */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
+  background-color: rgba(0, 0, 0, 1);
   width: 100%;
   top: 0;
   left: 0;
@@ -19,6 +19,8 @@
 
 .logo-icon {
   font-size: 1.5rem;
+  height: 2rem;
+  width: auto;
 }
 
 .logo-text {
@@ -27,10 +29,13 @@
   font-weight: bold;
 }
 
+/* روابط التنقل */
 .nav-links {
   display: flex;
   gap: 2rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
@@ -44,6 +49,7 @@
   color: #3EB489;
 }
 
+/* الأزرار */
 .navbar-right {
   display: flex;
   gap: 1rem;
@@ -75,4 +81,73 @@
 
 .register-btn:hover {
   background: #2d8f6f;
+}
+
+/* القائمة المنسدلة (الهامبرغر) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* استجابة للأجهزة الصغيرة */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-center {
+    position: absolute;
+    top: 60px; /* جعل القائمة تظهر أسفل الشريط العلوي */
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-center.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .navbar-right {
+    display: none;
+  }
+
+  .navbar-right.active {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .login-btn, .register-btn {
+    width: 100%; /* تأكد من أن الأزرار تأخذ عرض جيد */
+    padding: 0.5rem;
+  }
 }
