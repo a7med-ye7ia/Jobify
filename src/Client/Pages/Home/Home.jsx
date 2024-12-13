@@ -4,6 +4,7 @@ import React from "react";
 import "./Home.css";
 import Category from "./Category";
 import Navbar from "../../Components/Navbar/Navbar";
+import Blog from "../../Components/Blogs/Blog.jsx";
 
 const Home = () => {
   const recentJobsList = JOB.map((job, index) => {
@@ -102,6 +103,7 @@ const Home = () => {
         {recentJobsList}
       </div>
       <Category />
+      <Blog />
     </div>
   );
 };
