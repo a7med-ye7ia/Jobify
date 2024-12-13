@@ -16,7 +16,7 @@ const newJob = async (req, res) => {
 
 const getAllJobs = async (req,res) => {
     const jobs = await jobModel.find({});
-    res.send(jobs);
+    res.send(jobs).status(200);
 }
 //delete a job from the database by its id
 const deletejobs = async (req,res) => {
@@ -41,4 +41,17 @@ const deletejobs = async (req,res) => {
     }
     res.status(200).send('job updated successfully');
  }
-module.exports = {newJob,getAllJobs,deletejobs,updatejob};
+
+ const getJob = async (req,res)=>{
+    try {
+        const id = req.params.id;
+        const  job = await jobModel.findById(id);
+        if(!job){
+            res.status(404).send('Job not found');
+        }
+        res.status(200).send(job);
+    } catch (error) {
+        res.status(500).json(error.errmsg);
+    }
+}
+module.exports = {newJob,getAllJobs,deletejobs,updatejob,getJob};

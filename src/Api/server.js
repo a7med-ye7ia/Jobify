@@ -15,10 +15,13 @@ const PORT = 3000;
 // routes import
 const authRoutes = require('./routes/authRoutes');
 const jobRoutes=require('./routes/jobRoutes');
+const userRoutes= require('./routes/userRoutes');
+const adminRoutes= require('./routes/adminRoutes');
 // routes
 app.use('/auth', authRoutes);
 app.use('/job', jobRoutes);
-
+app.use('/user',userRoutes);
+app.use('/admin',adminRoutes);
 
 const start = async () => {
     try {
