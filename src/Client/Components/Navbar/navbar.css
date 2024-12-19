@@ -4,7 +4,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -19,8 +20,6 @@
 
 .logo-icon {
   font-size: 1.5rem;
-  height: 2rem;
-  width: auto;
 }
 
 .logo-text {
@@ -29,13 +28,11 @@
   font-weight: bold;
 }
 
-/* روابط التنقل */
 .nav-links {
   display: flex;
   gap: 2rem;
   list-style: none;
-  margin: 0;
-  padding: 0;
+
 }
 
 .nav-links a {
@@ -49,6 +46,38 @@
   color: #3EB489;
 }
 
+.navbar-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.login-btn, .register-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.login-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.register-btn {
+  background: #3EB489;
+  color: white;
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.register-btn:hover {
+  background: #2d8f6f;
+}
 /* الأزرار */
 .navbar-right {
   display: flex;

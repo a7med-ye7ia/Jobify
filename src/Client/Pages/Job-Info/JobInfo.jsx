@@ -13,7 +13,7 @@ function App() {
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Header */}
+//! Header
                     <div className="p-6 sm:p-8">
                         <div className="flex justify-between items-start">
                             <div className="flex items-center space-x-4">
@@ -32,7 +32,7 @@ function App() {
                             </button>
                         </div>
 
-                        {/* Job Meta */}
+                    //! hero
                         <div className="mt-6 flex justify-between items-center">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="flex items-center space-x-2 text-gray-600">
@@ -58,7 +58,7 @@ function App() {
                         </div>
                     </div>
 
-                    {/* Main Content */}
+               //! main hero
                     <div className="p-6 sm:p-8 grid md:grid-cols-3 gap-8">
                         <div className="md:col-span-2">
                             <section className="mb-8">
@@ -102,7 +102,7 @@ function App() {
                             </section>
                         </div>
 
-                        {/* Job Overview */}
+                   //! reveiw
                         <div className="bg-gray-50 rounded-lg p-6">
                             <h2 className="text-xl font-bold text-gray-900 mb-4">
                                 Job Overview
