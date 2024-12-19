@@ -16,7 +16,7 @@ const newJob = async (req, res) => {
 
 const getAllJobs = async (req,res) => {
     const jobs = await jobModel.find({});
-    res.send(jobs).status(200);
+    res.json(jobs).status(200);
 }
 //delete a job from the database by its id
 const deletejobs = async (req,res) => {

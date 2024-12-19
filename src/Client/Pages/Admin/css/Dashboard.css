@@ -1,0 +1,60 @@
+/* General styles */
+.full-screen {
+  min-height: 100vh;
+}
+
+.bg-light {
+  background-color: #f3f4f6;
+}
+
+/* Hero Section */
+.hero {
+  height: 12rem; /* 48px * 4 */
+  background-image: url('/profile/photo-1532012197267-da84d127e765.jpeg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
+}
+
+/* Profile Section */
+.profile {
+  max-width: 112rem; /* 7xl */
+  margin: 0 auto;
+  padding: 0 1rem; /* default padding */
+}
+
+.profile-container {
+  margin-top: -6rem;
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .profile {
+    padding: 0 1.5rem; /* Medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile {
+    padding: 0 2rem; /* Large screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-content {
+    flex-direction: row;
+  }
+}
