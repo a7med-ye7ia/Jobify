@@ -25,7 +25,7 @@ app.use('/admin',adminRoutes);
 
 const start = async () => {
     try {
-        await connectDB("mongodb://127.0.0.1:27017/DB1");
+        await connectDB("mongodb+srv://ADMIN:ADMIN@cluster0.zi7bt.mongodb.net/DB");
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
         });
