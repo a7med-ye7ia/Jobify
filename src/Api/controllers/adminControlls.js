@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const userModel = require('../Models/user.models');
 // const jobModel = require('../Models/job.models');

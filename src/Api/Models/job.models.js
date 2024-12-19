@@ -12,12 +12,14 @@ const JobSchema=new Schema(
         company: {type: String, required: false},
         description: {type: String, required: true},//required
         requirements: {type: String, required: false},
-        responsibilities: {type: String, required: false},
+        responsibilities: {type: Array, required: false},
         tags: {type: Array, required: false},
         location: {type: String, required: false},
         skills: {type: Array, required: false},  
         salary: {type: Number, required: false},
-        timeadded: {type:String, required: true}
+        timeadded: {type:String, required: true},
+        degree: {type:String, required: false},
+        catigory: {type:String, required: false}
 },{
     timestamps: true
 }

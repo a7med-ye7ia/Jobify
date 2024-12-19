@@ -3,12 +3,12 @@
 const jobModel = require('../Models/job.models')
 const newJob = async (req, res) => {
     try {
-        const { title, position, description } = req.body;
-        if (!title || !position || !description) {
-            return res.status(400).send("All fields are required: title, position, description");
+        const { title, timeadded, description } = req.body;
+        if (!title || !timeadded || !description) {
+            return res.status(400).send("All fields are required: title, timeadded, description");
         }
         const job = await jobModel.create(req.body);
-        res.status(201).send({ msg: 'Job added successfully', job });
+        res.status(201).json({ msg: 'Job added successfully', job });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -16,7 +16,7 @@ const newJob = async (req, res) => {
 
 const getAllJobs = async (req,res) => {
     const jobs = await jobModel.find({});
-    res.send(jobs).status(200);
+    res.json(jobs).status(200);
 }
 //delete a job from the database by its id
 const deletejobs = async (req,res) => {
