@@ -2,7 +2,7 @@ import { IoCameraReverseOutline } from "react-icons/io5";
 
 const ProfileCard = () => {
     return (
-        <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
+        <div className="bg-white rounded-lg p-5 w-full max-w-sm mx-auto">
             <div className="relative mb-6 flex justify-center items-center">
                 <img
                     src="/profile/OIP.jfif"
