@@ -45,7 +45,8 @@ const Jobs = ({ jobs }) => {
     setDropdown(false);
   };
 
-  // Sorting job list
+  // Sorting job list //
+
   let sortedJobList = [...jobs];
   if (sortByNewest) {
     sortedJobList = sortByTime([...jobs]);
@@ -62,6 +63,7 @@ const Jobs = ({ jobs }) => {
 
     return titleMatch && categoryMatch;
   });
+
 
   const JobsList = filteredJobs.slice(0, visibleJobsCount).map((job, index) => (
     <Job 

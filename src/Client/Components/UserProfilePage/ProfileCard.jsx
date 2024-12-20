@@ -1,6 +1,7 @@
 import { IoCameraReverseOutline } from "react-icons/io5";
 
-const ProfileCard = () => {
+const ProfileCard = ({user}) => {
+    console.log("ProfileCard", user);
     return (
         <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
             <div className="relative mb-6 flex justify-center items-center">
@@ -16,7 +17,7 @@ const ProfileCard = () => {
                 </div>
             </div>
             <div className="text-center">
-                <h2 className="text-xl font-semibold text-gray-800">yehia...!</h2>
+                <h2 className="text-xl font-semibold text-gray-800">{user.username}</h2>
                 <p className="text-sm text-gray-500 mt-1">
                     Your account is ready, you can now apply for advice.
                 </p>
