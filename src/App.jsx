@@ -48,7 +48,7 @@ const App =() =>{
         <Route path="/sign-up" element={<Signup />} />
         {/* Pages */}
         <Route path="/jobs" element={<Jobs jobs={jobs} />} /> 
-        <Route path="/job-info" element={<JobInfo />} />
+        <Route path="/job-info/:id" element={<JobInfo />} />
         <Route path="/contact-us" element={<Contactus />} />
         <Route path="/about-us" element={<Aboutus />} />
         {/* Not Found */}
