@@ -1,6 +1,5 @@
 import {JOB} from "../Jobs/job.js"
 import Job from "../../Components/Job/Job.jsx";
-import React from "react";
 import "./Home.css";
 import Category from "./Category";
 import Navbar from "../../Components/Navbar/Navbar";

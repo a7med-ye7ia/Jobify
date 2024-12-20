@@ -6,12 +6,22 @@ import { sortByTime } from "../../Utilities/SortByTime.js";
 import Sidebar from "../../Components/Sidebar/Sidebar.jsx";
 import { FaChevronDown } from "react-icons/fa";
 
+const photos = [
+  {photo : "/public/jobIcon/Logo (1).png"},
+  {photo : "/public/jobIcon/Logo (2).png"},
+  {photo : "/public/jobIcon/Logo (3).png"},
+  {photo : "/public/jobIcon/Logo (4).png"},
+  {photo : "/public/jobIcon/Logo (5).png"},
+  {photo : "/public/jobIcon/Logo (6).png"},
+];
+
 const Jobs = ({ jobs }) => {
   const [dropdown, setDropdown] = useState(false);
   const [sortByNewest, setSortByNewest] = useState(false);
   const [sortByOldest, setSortByOldest] = useState(false);
   const [Search, setSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [visibleJobsCount, setVisibleJobsCount] = useState(4); // Initial number of visible jobs
 
   const toggleDropdown = () => {
     setDropdown(!dropdown);
@@ -35,7 +45,7 @@ const Jobs = ({ jobs }) => {
     setDropdown(false);
   };
 
-  // Sorting job list // 
+  // Sorting job list
   let sortedJobList = [...jobs];
   if (sortByNewest) {
     sortedJobList = sortByTime([...jobs]);
@@ -53,9 +63,22 @@ const Jobs = ({ jobs }) => {
     return titleMatch && categoryMatch;
   });
 
-  const JobsList = filteredJobs.map((job, index) => (
-    <Job id={job.id} job={job} />
+  const JobsList = filteredJobs.slice(0, visibleJobsCount).map((job, index) => (
+    <Job 
+      key={job.id} 
+      id={job.id} 
+      job={job} 
+      photo={photos[index % photos.length]}
+    />
   ));
+
+  const handleShowMore = () => {
+    setVisibleJobsCount(visibleJobsCount + 5); // Increase the number of visible jobs by 5
+  };
+
+  const handleShowLess = () => {
+    setVisibleJobsCount(Math.max(4, visibleJobsCount - 5)); // Decrease the number of visible jobs by 5, with a minimum of 6
+  };
 
   return (
     <>
@@ -71,8 +94,7 @@ const Jobs = ({ jobs }) => {
           <div className="p-1">
             <div className="flex justify-between py-5 items-center mb-4 px-3 bg-white rounded-md">
               <p className="text-sm sm:text-base">
-                Showing {JobsList.length} of {jobs.length} results{" "}
-             {/* //! Props  */}
+                Showing {JobsList.length} of {filteredJobs.length} results
               </p>
               <div className="relative">
                 <button
@@ -121,6 +143,25 @@ const Jobs = ({ jobs }) => {
               </div>
             </div>
             {JobsList}
+            <div className="flex justify-between py-5">
+  {filteredJobs.length > 6 && visibleJobsCount < filteredJobs.length && (
+    <button
+      className="w-32 h-10 rounded-lg font-semibold text-sm sm:text-base bg-[#309689] text-white border-[2px] hover:bg-white hover:border-[#309689] hover:text-[#309689]"
+      onClick={handleShowMore}
+    >
+      Show More
+    </button>
+  )}
+  {visibleJobsCount > 6 && (
+    <button
+      className="w-32 h-10 rounded-lg font-semibold text-sm sm:text-base bg-[#309689] text-white border-[2px] hover:bg-white hover:border-[#309689] hover:text-[#309689]"
+      onClick={handleShowLess}
+    >
+      Show Less
+    </button>
+  )}
+</div>
+
           </div>
         </div>
       </div>
