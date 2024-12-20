@@ -55,7 +55,6 @@ const Sidebar = ({
                 />
                 <span className="ml-2 text-gray-700">{category.name}</span>
               </label>
-              <span className="text-gray-500 text-sm">{category.count}</span>
             </div>
           ))}
         </div>

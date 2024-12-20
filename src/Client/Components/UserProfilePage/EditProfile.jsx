@@ -1,4 +1,63 @@
-const EditProfile = () => {
+import { useState } from "react";
+
+const EditProfile = ({ user }) => {
+    const [formData, setFormData] = useState({
+        firstname: user?.firstname || "",
+        lastname: user?.lastname || "",
+        birthday: user?.birthday || "",
+        education: user?.education || "",
+        email: user?.email || "",
+        phone: user?.phone || "",
+        country: user?.country || "",
+        city: user?.city || "",
+    });
+
+    const [isUpdating, setIsUpdating] = useState(false); 
+    const [message, setMessage] = useState(""); 
+
+    // To handle changes in form fields
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    // Handle form submission and update
+    const handleSave = async () => {
+        if (!user?._id) {
+            setMessage("User ID is missing.");
+            return;
+        }
+
+        setIsUpdating(true);
+        setMessage(""); // Clear any previous messages
+
+        try {
+            const response = await fetch(`http://localhost:3000/user/userUpdate/${user._id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to update user. Status: ${response.status}`);
+            }
+
+            const updatedUser = await response.json();
+            console.log("User updated successfully:", updatedUser);
+            setMessage("Profile updated successfully!"); // Show success message
+        } catch (error) {
+            console.error("Error updating user:", error.message);
+            setMessage("Failed to update profile."); // Show error message
+        } finally {
+            setIsUpdating(false); // Stop the loading indicator
+        }
+    };
+
     return (
         <div className="bg-white rounded-lg p-6 w-full">
             <div className="flex flex-col gap-6">
@@ -15,6 +74,9 @@ const EditProfile = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="firstname"
+                                    value={formData.firstname}
+                                    onChange={handleChange}
                                     placeholder="First Name"
                                     className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
                                 />
@@ -25,6 +87,9 @@ const EditProfile = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="lastname"
+                                    value={formData.lastname}
+                                    onChange={handleChange}
                                     placeholder="Last Name"
                                     className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
                                 />
@@ -33,25 +98,27 @@ const EditProfile = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Date of birth
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Birth Date"
-                                        className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="birthday"
+                                    value={formData.birthday}
+                                    onChange={handleChange}
+                                    placeholder="Birth Date"
+                                    className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
+                                />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Education level
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Master"
-                                        className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="education"
+                                    value={formData.education}
+                                    onChange={handleChange}
+                                    placeholder="Education Level"
+                                    className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
+                                />
                             </div>
                         </div>
                     </div>
@@ -64,6 +131,9 @@ const EditProfile = () => {
                                 </label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="Enter e-mail"
                                     className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
                                 />
@@ -72,51 +142,59 @@ const EditProfile = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Phone Number
                                 </label>
-                                <div className="flex gap-2">
-                                    <input
-                                        type="text"
-                                        placeholder="+20"
-                                        className="focus:outline-[#309689] w-16 p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                    <input
-                                        type="tel"
-                                        placeholder="1555193171"
-                                        className="focus:outline-[#309689] flex-1 min-w-0 p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                </div>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder="Phone Number"
+                                    className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
+                                />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Country
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Country"
-                                        className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="country"
+                                    value={formData.country}
+                                    onChange={handleChange}
+                                    placeholder="Country"
+                                    className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
+                                />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     City
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="City"
-                                        className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    name="city"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                    placeholder="City"
+                                    className="focus:outline-[#309689] w-full p-2.5 rounded-lg border border-gray-300"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-                <button className="w-full sm:w-auto px-6 py-2.5 bg-emerald-500 text-white font-medium rounded-lg hover:bg-emerald-600 transition-colors">
-                    Save
+                <button
+                    className="w-full sm:w-auto px-6 py-2.5 bg-emerald-500 text-white font-medium rounded-lg hover:bg-emerald-600 transition-colors"
+                    onClick={handleSave}
+                    disabled={isUpdating}
+                >
+                    {isUpdating ? "Saving..." : "Save"}
                 </button>
+                {message && (
+                    <div className={`mt-4 text-center ${message.includes("successfully") ? "text-green-500" : "text-red-500"}`}>
+                        {message}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
+
 export default EditProfile;
