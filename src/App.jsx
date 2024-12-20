@@ -12,7 +12,6 @@ import PrivateRoutes from "./Client/Components/PrivateRoute/PrivateRoutes";
 import UserProfile from "./Client/Pages/Profile/UserProfile";
 import Footer from "./Client/Components/Footer/Footer";
 import { useEffect } from "react";
-import axios from "axios";
 import { useState} from 'react';
 
 
@@ -52,8 +51,8 @@ useEffect(() => {
         <Route path="/sign-in" element={<Signin />} />
         <Route path="/sign-up" element={<Signup />} />
         {/* Pages */}
-       <Route path="/jobs" element={<Jobs jobs={jobs} />} /> 
-        <Route path="/job-info/:id" element={<JobInfo />} />
+        <Route path="/jobs" element={<Jobs jobs={jobs} />} /> 
+        <Route path="/job-info" element={<JobInfo />} />
         <Route path="/contact-us" element={<Contactus />} />
         <Route path="/about-us" element={<Aboutus />} />
         {/* Not Found */}
