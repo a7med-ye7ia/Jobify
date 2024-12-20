@@ -6,7 +6,6 @@ const DashBoard = () => {
     <div className="full-screen bg-light">
       {/* Hero Section */}
       <div className="hero">
-        <div className="hero-overlay"></div>
       </div>
       {/* Profile Section */}
       <div className="profile profile-container">

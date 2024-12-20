@@ -16,7 +16,7 @@ const ProfileCard = () => {
                 </div>
             </div>
             <div className="text-center">
-                <h2 className="text-xl font-semibold text-gray-800">yehia...!</h2>
+                <h2 className="text-xl font-semibold text-gray-800">Amr...!</h2>
                 <p className="text-sm text-gray-500 mt-1">
                     Your account is ready, you can now apply for advice.
                 </p>

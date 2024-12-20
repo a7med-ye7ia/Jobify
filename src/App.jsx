@@ -30,8 +30,6 @@ const App =() =>{
       }
       const data = await response.json();
       console.log(data);
-      console.log(data.data.id);
-      console.log(data._id);
       setJobs(data); 
     } catch (error) {
       console.error("Error fetching jobs:", error.message);

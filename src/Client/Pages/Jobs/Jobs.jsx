@@ -35,7 +35,7 @@ const Jobs = ({ jobs }) => {
     setDropdown(false);
   };
 
-  // Sorting job list // 
+  // Sorting job list //
   let sortedJobList = [...jobs];
   if (sortByNewest) {
     sortedJobList = sortByTime([...jobs]);
@@ -53,9 +53,7 @@ const Jobs = ({ jobs }) => {
     return titleMatch && categoryMatch;
   });
 
-  const JobsList = filteredJobs.map((job, index) => (
-    <Job id={job.id} job={job} />
-  ));
+  const JobsList = filteredJobs.map((job) => <Job key={job._id} job={job} />);
 
   return (
     <>
@@ -72,7 +70,7 @@ const Jobs = ({ jobs }) => {
             <div className="flex justify-between py-5 items-center mb-4 px-3 bg-white rounded-md">
               <p className="text-sm sm:text-base">
                 Showing {JobsList.length} of {jobs.length} results{" "}
-             {/* //! Props  */}
+                {/* //! Props  */}
               </p>
               <div className="relative">
                 <button
