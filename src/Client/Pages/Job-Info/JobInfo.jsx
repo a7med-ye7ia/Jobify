@@ -10,10 +10,12 @@ import {
   FiSend,
   FiBookmark,
 } from "react-icons/fi";
+import UI from "./ui";
 
 function JobInfo() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -36,15 +38,10 @@ function JobInfo() {
     return <p className="text-red-500">Loading job information...</p>;
   }
 
-  const handleApply = () => {
-    console.log("Applying for job:", job.title);
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
         <div className="p-8">
-          {/* Header Section */}
           <div className="flex justify-between items-start mb-6">
             <div className="flex items-center gap-4">
               <img src={job.photo} alt="logo" />
@@ -60,7 +57,6 @@ function JobInfo() {
             </div>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
             {job.tags.map((tag, index) => (
               <span
@@ -70,10 +66,10 @@ function JobInfo() {
                 <FiTag className="w-4 h-4 mr-1" />
                 {tag}
               </span>
+              
             ))}
           </div>
 
-          {/* Job Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="flex items-center space-x-3">
               <div className="p-2 bg-blue-50 rounded-lg">
@@ -118,7 +114,6 @@ function JobInfo() {
             </div>
           </div>
 
-          {/* Description */}
           <div className="mb-8">
             <h2 className="text-xl font-semibold text-slate-900 mb-4">
               Job Description
@@ -126,7 +121,6 @@ function JobInfo() {
             <p className="text-slate-600 leading-relaxed">{job.description}</p>
           </div>
 
-          {/* Skills */}
           <div className="mb-8">
             <h2 className="text-xl font-semibold text-slate-900 mb-4">
               Required Skills
@@ -141,10 +135,9 @@ function JobInfo() {
             </div>
           </div>
 
-          {/* Apply Button */}
           <div className="flex gap-4">
             <button
-              onClick={handleApply}
+              onClick={() => setIsApplyModalOpen(true)}
               className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <FiSend className="w-5 h-5" />
@@ -153,6 +146,12 @@ function JobInfo() {
           </div>
         </div>
       </div>
+
+      <UI
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        job={job}
+      />
     </div>
   );
 }
