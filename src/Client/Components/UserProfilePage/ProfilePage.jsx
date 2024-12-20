@@ -7,22 +7,22 @@ import Notifications from "./Notification";
 import Security from "./Security";
 import ProfileCard from "./ProfileCard";
 
+
+const ProfilePage = ({user}) => {
+    
 const menuItems = [
-    { id: 1, icon: <IoSettingsSharp size={20} />, text: 'Edit Profile', component: <EditProfile /> },
-    { id: 2, icon: <FaBell size={20} />, text: 'Notifications', component: <Notifications /> },
-    { id: 3, icon: <CiLock size={30} />, text: 'Password & Security', component: <Security /> },
+    { id: 1, icon: <IoSettingsSharp size={20} />, text: 'Edit Profile', component: <EditProfile user={user}/> },
+    { id: 2, icon: <FaBell size={20} />, text: 'Notifications', component: <Notifications user={user}/> },
+    { id: 3, icon: <CiLock size={30} />, text: 'Password & Security', component: <Security user={user}/> },
 ];
-
-const Sidebar = () => {
     const [activeItem, setActiveItem] = useState(1);
-
     const handleClick = (id) => {
         setActiveItem(id);
     };
 
     return <>
         <div className="w-full md:w-72 bg-white rounded-lg p-4 space-y-4">
-            <ProfileCard /> 
+            <ProfileCard user={user}/> 
             <div>
                 {menuItems.map((item) => (
                     <div
@@ -50,4 +50,4 @@ const Sidebar = () => {
     </>
 };
 
-export default Sidebar;
+export default ProfilePage;

@@ -38,10 +38,6 @@ const App =() =>{
   useEffect(() => {
     fetchNotes(); 
   }, []);  
-
-useEffect(() => {
-  fetchNotes();
-}, []);
   return (
     <Router>
       <Routes>
