@@ -1,19 +1,17 @@
 import { useState } from "react";
 import Header from "../../Components/Header/Header.jsx";
 import Job from "../../Components/Job/Job.jsx";
-import { JOB } from "./job.js";
-import { FaChevronDown } from "react-icons/fa";
 import Companies from "../../Components/Companies/Companies.jsx";
 import { sortByTime } from "../../Utilities/SortByTime.js";
 import Sidebar from "../../Components/Sidebar/Sidebar.jsx";
+import { FaChevronDown } from "react-icons/fa";
 
-const Jobs = () => {
+const Jobs = ({ jobs }) => {
   const [dropdown, setDropdown] = useState(false);
   const [sortByNewest, setSortByNewest] = useState(false);
   const [sortByOldest, setSortByOldest] = useState(false);
   const [Search, setSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
-
 
   const toggleDropdown = () => {
     setDropdown(!dropdown);
@@ -37,12 +35,12 @@ const Jobs = () => {
     setDropdown(false);
   };
 
-  // Sorting job list
-  let sortedJobList = [...JOB];
+  // Sorting job list // 
+  let sortedJobList = [...jobs];
   if (sortByNewest) {
-    sortedJobList = sortByTime([...JOB]);
+    sortedJobList = sortByTime([...jobs]);
   } else if (sortByOldest) {
-    sortedJobList = sortByTime([...JOB]).reverse();
+    sortedJobList = sortByTime([...jobs]).reverse();
   }
 
   // Filter jobs based on search term and selected categories
@@ -56,7 +54,7 @@ const Jobs = () => {
   });
 
   const JobsList = filteredJobs.map((job, index) => (
-    <Job key={index} job={job} />
+    <Job id={job.id} job={job} />
   ));
 
   return (
@@ -73,7 +71,8 @@ const Jobs = () => {
           <div className="p-1">
             <div className="flex justify-between py-5 items-center mb-4 px-3 bg-white rounded-md">
               <p className="text-sm sm:text-base">
-                Showing {JobsList.length} of {JOB.length} results
+                Showing {JobsList.length} of {jobs.length} results{" "}
+             {/* //! Props  */}
               </p>
               <div className="relative">
                 <button

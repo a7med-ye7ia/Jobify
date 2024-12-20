@@ -26,7 +26,7 @@ const Sidebar = ({
     <div className="col-span-1 bg-gray-100 p-4 rounded-lg shadow-md">
       <p className="font-semibold">Filters</p>
       <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow">
-        // ! search
+        {/* // ! search */}
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-4">Search by Job Title</h2>
           <input
@@ -38,7 +38,7 @@ const Sidebar = ({
           />
         </div>
 
-// ! category
+{/* // ! category */}
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">Category</h3>
           {categories.map((category) => (
