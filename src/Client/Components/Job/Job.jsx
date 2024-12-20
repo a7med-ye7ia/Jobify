@@ -7,7 +7,7 @@ import { BsBookmarkPlusFill } from "react-icons/bs";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Job = ({ job, photo }) => {
+const Job = ({ job }) => {
     const [bookmark, setBookmark] = useState(false);
     const navigate = useNavigate();
     const handleJobDetails = () => {
@@ -39,7 +39,7 @@ const Job = ({ job, photo }) => {
                 <div className="flex items-start gap-4 mb-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full">
                         <img
-                            src={photo?.photo || job.photo}
+                            src={job.photo}
                             alt="company logo"
                         />
                     </div>
