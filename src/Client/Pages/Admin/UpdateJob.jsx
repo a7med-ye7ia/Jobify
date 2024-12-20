@@ -4,6 +4,7 @@ import axios from "axios";
 const UpdateJob = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [image, setImage] = useState(null); // حالة جديدة لتخزين الصورة
 
   useEffect(() => {
     fetchJobs();
@@ -20,26 +21,54 @@ const UpdateJob = () => {
 
   const handleSelect = (job) => {
     setSelectedJob(job);
+    setImage(null); // إعادة تعيين الصورة عند اختيار وظيفة جديدة
   };
 
   const handleChange = (e) => {
     let value;
-    
-      value = e.target.value;
-    
+    value = e.target.value;
     setSelectedJob({ ...selectedJob, [e.target.name]: value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result); // تخزين الصورة بتنسيق Base64
+      };
+      reader.readAsDataURL(file); // قراءة الصورة وتحويلها إلى Base64
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+
+    // إضافة بيانات الوظيفة إلى FormData
+    for (const key in selectedJob) {
+      formData.append(key, selectedJob[key]);
+    }
+
+    // إضافة الصورة إذا كانت موجودة
+    if (image) {
+      formData.append("image", image); // هنا نضيف الصورة بتنسيق Base64
+    }
+
     try {
       await axios.put(
         `http://localhost:3000/job/updatejob/${selectedJob._id}`,
-        selectedJob
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       alert("Job updated successfully!");
       fetchJobs();
       setSelectedJob(null);
+      setImage(null); // إعادة تعيين الصورة
     } catch (error) {
       console.error("Error updating job:", error);
       alert("Failed to update job");
@@ -129,7 +158,7 @@ const UpdateJob = () => {
           <input
             type="text"
             name="tags"
-            value={selectedJob.tags }
+            value={selectedJob.tags}
             onChange={handleChange}
             placeholder="Tags (comma-separated)"
             className="w-full p-2 border rounded"
@@ -145,7 +174,7 @@ const UpdateJob = () => {
           <input
             type="text"
             name="skills"
-            value={selectedJob.skills }
+            value={selectedJob.skills}
             onChange={handleChange}
             placeholder="Required Skills (comma-separated)"
             className="w-full p-2 border rounded"
@@ -156,6 +185,13 @@ const UpdateJob = () => {
             value={selectedJob.salary}
             onChange={handleChange}
             placeholder="Salary"
+            className="w-full p-2 border rounded"
+          />
+          {/* حقل إدخال الصورة */}
+          <input
+            type="file"
+            name="image"
+            onChange={handleImageChange}
             className="w-full p-2 border rounded"
           />
           <div className="flex justify-between">

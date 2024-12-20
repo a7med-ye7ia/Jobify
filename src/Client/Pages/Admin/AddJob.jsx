@@ -14,7 +14,7 @@ const AddJob = () => {
     location: "",
     skills: "",
     salary: "",
-    timeadded: new Date().toISOString().slice(0, 16), // Set default to current date and time
+    timeadded: new Date().toISOString().slice(0, 16), 
   });
 
   const handleChange = (e) => {

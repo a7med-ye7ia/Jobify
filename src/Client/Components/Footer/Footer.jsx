@@ -106,23 +106,20 @@ const Footer = () => {
           </ul>
         </div>
         <div className="space-y-4 cursor-pointer">
-          <h3 className="text-lg font-semibold">Newsletter</h3>
-          <p className="text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
-          <input
-            type="email"
-            placeholder="E-Mail Address"
-            className="cursor-pointer w-full px-4 py-2 rounded bg-black text-white placeholder-gray-400 border-2 border-[#3EB489]  focus:outline-none"
-          />
-          <button className="w-full py-2 bg-[#3EB489] rounded hover:bg-[#376a57]">
-            Subscribe Now
-          </button>
+          <h3 className="text-lg font-semibold">complaints</h3>
+          <span className="text-sm">
+            A complaints department is a unit within an organization that
+            receives and addresses customer or employee complaints to improve
+            service quality and enhance customer satisfaction.....................
+            
+            +201024776436
+          </span>
+          
         </div>
       </div>
       <div className="mt-8 border-t p-10 border-gray-700 pt-4 text-center md:flex md:items-center md:justify-between">
         <p className="text-sm cursor-pointer">
-          © Copyright Jobify 2024. Designed by yehia...!
+          © Copyright Jobify 2024. Designed by Almtarshamen ...!
         </p>
         <div className="mt-4 md:mt-0 flex justify-center space-x-4">
           <a href="#" className="hover:text-gray-400">
