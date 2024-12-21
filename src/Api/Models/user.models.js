@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose');
 
-<<<<<<< HEAD
 const userSchema = new mongoose.Schema({
     username: { 
         type: String, 
@@ -30,31 +29,6 @@ const userSchema = new mongoose.Schema({
     birthday: { type: String, required: true },
     profilePic: { type: Buffer },
     coverPic: { type: Buffer },
-=======
-const UserSchema = new Schema(
-{
-    username: { type: String },
-    firstname: { type: String, required: true},
-    lastname: { type: String, required: true},
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-
-    role: { type: String , default: 'user'},
-
-    education: { type: String },
-    country: { type: String },
-    city: { type: String },
-    phone: { type: String },
-    birthday: { type: String },
-
-    
-    profilePic:{ type: Buffer},
-    coverPic:{ type: Buffer},
-
->>>>>>> 54ede084692decd4b2bdd91bd7734aed14578c5f
-    isEmployer: { type: Boolean, default: false },
-    isActive: { type: Boolean, default: true },
-    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('User', userSchema);
