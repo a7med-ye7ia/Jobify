@@ -18,28 +18,10 @@ const ApplicationSchema = new mongoose.Schema({
     },
     cv: {
         type: Buffer,
-<<<<<<< HEAD
         required: false,
     },
-    coverLetters: [{
-        title: {
-            type: String,
-            required: false,
-        },
-        content: {
-            type: String,
-            required: false
-        },
-        submittedAt: {
-            type: Date,
-            default: Date.now
-        }
-    }]
-=======
-    },
     coverLetters: {type : String}
->>>>>>> Adham
-}, {
+    }, {
     timestamps: true 
 });
 
