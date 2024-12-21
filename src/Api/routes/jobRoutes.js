@@ -12,7 +12,7 @@ const multipleFields = upload.fields([
     { name: 'cv', maxCount: 1 },
 ]);
 
-
+2
 app.route('/addjob').post(newJob);
 app.route('/deletejobs/:id').delete(deletejobs);
 app.route('/getjobs').get(getAllJobs);
