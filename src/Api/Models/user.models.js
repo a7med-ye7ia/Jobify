@@ -22,13 +22,13 @@ const userSchema = new mongoose.Schema({
         ] 
     },
     role: { type: String, default: 'user' },
-    education: { type: String, required: true },
-    country: { type: String, required: true },
-    city: { type: String, required: true },
-    phone: { type: String, required: true },
-    birthday: { type: String, required: true },
-    profilePic: { type: Buffer },
-    coverPic: { type: Buffer },
+    education: { type: String, required: false },
+    country: { type: String, required: false },
+    city: { type: String, required: false },
+    phone: { type: String, required: false },
+    birthday: { type: String, required: false },
+    profilePic: { type: Buffer, required: false },
+    coverPic: { type: Buffer, required: false },
 });
 
 module.exports = mongoose.model('User', userSchema);
