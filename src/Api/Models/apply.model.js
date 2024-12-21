@@ -20,16 +20,16 @@ const ApplicationSchema = new mongoose.Schema({
     },
     cv: {
         type: Buffer,
-        required: true
+        required: false,
     },
     coverLetters: [{
         title: {
             type: String,
-            required: true
+            required: false,
         },
         content: {
             type: String,
-            required: true
+            required: false
         },
         submittedAt: {
             type: Date,
