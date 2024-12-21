@@ -41,13 +41,13 @@ const App =() =>{
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home jobs={jobs} />} />
+        <Route path="/home" element={<Home jobs={jobs} />} />
         {/* Auth */}
         <Route path="/sign-in" element={<Signin />} />
         <Route path="/sign-up" element={<Signup />} />
         {/* Pages */}
-        <Route path="/jobs" element={<Jobs jobs={jobs} />} /> 
+        <Route path="/jobs" element={<Jobs jobs={jobs} />} />
         <Route path="/job-info/:id" element={<JobInfo />} />
         <Route path="/contact-us" element={<Contactus />} />
         <Route path="/about-us" element={<Aboutus />} />

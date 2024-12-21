@@ -24,7 +24,7 @@ const Job = ({ job }) => {
       <div className="job-card">
         <div className="top-row">
           <div className="time-badge">
-            <p>{job.timeadded} Ago</p>
+            <p>{job.timeadded}</p>
           </div>
           <button onClick={toggleBookmark} className="bookmark-button">
             {bookmark ? (
