@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
 {
-    username: { type: String, required: true },
+    username: { type: String },
     firstname: { type: String, required: true},
     lastname: { type: String, required: true},
     email: { type: String, required: true, unique: true },
@@ -14,11 +14,11 @@ const UserSchema = new Schema(
 
     role: { type: String , default: 'user'},
 
-    education: { type: String , required: true},
-    country: { type: String , required: true},
-    city: { type: String , required: true},
-    phone: { type: String , required: true},
-    birthday: { type: String , required: true},
+    education: { type: String },
+    country: { type: String },
+    city: { type: String },
+    phone: { type: String },
+    birthday: { type: String },
 
     
     profilePic:{ type: Buffer},
