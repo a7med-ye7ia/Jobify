@@ -1,9 +1,12 @@
+import React from "react";
+import "./Footer.css"; // Import the CSS file
+
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8">
-      <div className=" mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-10">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-section">
+          <div className="footer-logo">
             <svg
               width="26"
               height="26"
@@ -32,102 +35,71 @@ const Footer = () => {
                 fill="white"
               />
             </svg>
-            <a
-              className="cursor-pointer text-lg font-bold hover:text-[#3EB489]"
-              href="/"
-            >
+            <a href="/" className="footer-logo-link">
               Jobify
             </a>
           </div>
-          <p className="text-sm">
+          <p className="footer-text">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam
             aspernatur, magnam quod reprehenderit labore iste at. Ex mollitia
             necessitatibus aut.
           </p>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-2">
+        <div className="footer-section">
+          <h3 className="footer-heading">Company</h3>
+          <ul className="footer-list">
             <li>
-              <a href="/about-us" className="hover:text-[#3EB489]">
-                About Us
-              </a>
+              <a href="/about-us">About Us</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Our Team
-              </a>
+              <a href="#">Our Team</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Partners
-              </a>
+              <a href="#">Partners</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                For Candidates
-              </a>
+              <a href="#">For Candidates</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                For Employers
-              </a>
+              <a href="#">For Employers</a>
             </li>
           </ul>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Industries</h3>
-          <ul className="space-y-2">
+        <div className="footer-section">
+          <h3 className="footer-heading">Industries</h3>
+          <ul className="footer-list">
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Telecommunications
-              </a>
+              <a href="#">Telecommunications</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Hotels & Tourism
-              </a>
+              <a href="#">Hotels & Tourism</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Construction
-              </a>
+              <a href="#">Construction</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Education
-              </a>
+              <a href="#">Education</a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#3EB489]">
-                Financial Services
-              </a>
+              <a href="#">Financial Services</a>
             </li>
           </ul>
         </div>
-        <div className="space-y-4 cursor-pointer">
-          <h3 className="text-lg font-semibold">complaints</h3>
-          <span className="text-sm">
+        <div className="footer-section">
+          <h3 className="footer-heading">Complaints</h3>
+          <span className="footer-text">
             A complaints department is a unit within an organization that
             receives and addresses customer or employee complaints to improve
-            service quality and enhance customer satisfaction.....................
-            
-            +201024776436
+            service quality and enhance customer
+            satisfaction..................... +201024776436
           </span>
-          
         </div>
       </div>
-      <div className="mt-8 border-t p-10 border-gray-700 pt-4 text-center md:flex md:items-center md:justify-between">
-        <p className="text-sm cursor-pointer">
-          © Copyright Jobify 2024. Designed by Almtarshamen ...!
-        </p>
-        <div className="mt-4 md:mt-0 flex justify-center space-x-4">
-          <a href="#" className="hover:text-gray-400">
-            Privacy & Policy
-          </a>
-          <a href="#" className="hover:text-gray-400">
-            Terms & Conditions
-          </a>
+      <div className="footer-bottom">
+        <p>© Copyright Jobify 2024. Designed by Almtarshamen ...!</p>
+        <div className="footer-bottom-links">
+          <a href="#">Privacy & Policy</a>
+          <a href="#">Terms & Conditions</a>
         </div>
       </div>
     </footer>

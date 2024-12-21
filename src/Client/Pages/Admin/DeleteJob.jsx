@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./css/DeleteJob.css";
 
 const DeleteJob = () => {
   const [jobs, setJobs] = useState([]);
@@ -31,20 +32,15 @@ const DeleteJob = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Delete Job</h2>
-      <ul className="flex flex-wrap gap-4">
+    <div className="delete-job-container">
+      <h2 className="delete-job-title">Delete Job</h2>
+      <ul className="job-list">
         {jobs.map((job) => (
-          <li
-            key={job._id}
-            className="flex justify-between items-center border p-4 rounded w-64"
-          >
-            <span>
-              {job.title}
-            </span>
+          <li key={job._id} className="job-item">
+            <span className="job-title">{job.title}</span>
             <button
               onClick={() => handleDelete(job._id)}
-              className="bg-red-500 text-white px-4 py-2 rounded"
+              className="delete-button"
             >
               Delete
             </button>

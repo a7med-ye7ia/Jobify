@@ -1,0 +1,78 @@
+.sidebar-container {
+  grid-column: span 1;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filters-title {
+  font-weight: 600;
+}
+
+.filters-box {
+  max-width: 24rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-section {
+  margin-bottom: 1.5rem;
+}
+
+.search-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #14b8a6;
+}
+
+.category-section {
+  margin-bottom: 1.5rem;
+}
+
+.category-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  height: 1rem;
+  width: 1rem;
+  color: #14b8a6;
+  border-radius: 0.25rem;
+}
+
+.checkbox-text {
+  margin-left: 0.5rem;
+  color: #374151;
+}
