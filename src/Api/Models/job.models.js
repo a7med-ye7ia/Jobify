@@ -20,7 +20,8 @@ const JobSchema=new Schema(
         degree: {type:String, required: false},
         catigory: {type:String, required: false},
         category: { type: String, required: false },
-        photo: { type: String ,default :"/public/jobIcon/Logo (1).png"},    
+        photo: { type: String ,default :"/public/jobIcon/Logo (1).png"}, 
+        timeadded: {type:String, required: true}   
 },{
     timestamps: true
 }

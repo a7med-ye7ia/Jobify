@@ -18,7 +18,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(""); // Reset error on new submit
+        setError(""); 
         try {
             const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
@@ -32,10 +32,14 @@ const Login = () => {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Login failed');
             }
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(data.email)) {
+              return "Please enter a valid email address.";
+            }
 
             const result = await response.json();
             console.log("Login successful:", result);
-            navigate("/"); // Or wherever the user is redirected after login
+            navigate("/"); 
         } catch (err) {
             setError(err.message || "Something went wrong. Please try again.");
         }
@@ -44,7 +48,7 @@ const Login = () => {
     return (
         <div className={styles.login_container}>
             <div className={styles.login_form_container}>
-                {/* Left Panel */}
+                
                 <div className={styles.left}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
                         <h1>Login</h1>
@@ -78,7 +82,7 @@ const Login = () => {
                     </form>
                 </div>
 
-                {/* Right Panel */}
+                
                 <div className={styles.right}>
                     <h1>Welcome Back!</h1>
                 </div>

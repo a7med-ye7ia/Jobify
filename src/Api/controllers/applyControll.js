@@ -1,37 +1,37 @@
 const applyModel = require('../Models/apply.model');
 
-const newApplication = async (req,res)=>{
-        const { fullName, email,phone,coverLetters } = req.body;
-        const CV = req.files['cv'][0]
-        if(!fullName)
-        {
-            return res.send("Please provide the full Name!").status(400);
+const newApplication = async (req, res) => {
+    try {
+        const CV = req.files['cv']; 
+        const { fullName, email, phone } = req.body;
+        
+        if (!fullName) {
+            return res.status(400).send("Please provide the full Name!");
         }
-        if(!email)
-        {
-            return res.send("Please provide the E-mail!").status(400);
+        if (!email) {
+            return res.status(400).send("Please provide the E-mail!");
         }
-        if(!coverLetters)
-        {
-            return res.send("Please provide the coverLetters!").status(400);
+        if (!phone) {
+            return res.status(400).send("Please provide the phone!");
         }
-        if(!phone){
-            return res.send("Please provide the phone!").status(400);
-        }
-        if(!CV){
-            return res.send("Please provide the CV!").status(400);
-        }
-        const application = await applyModel.create(req.body);
-        application.cv = CV.buffer;
+       
+
+        const application = await applyModel.create({fullName,email,phone});
+
+        application.cv = CV[0].buffer; 
         await application.save();
-        res.send({msg:'Application Completed',application}).status(201);
-}
+        res.status(201).send({ msg: 'Application Completed', application });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'An error occurred while processing your application.' });
+    }
+};
 
 const ApplicationUpdate = async (req, res) => {
     try {
         const id = req.params.id;
-        const new_cv = req.files['cv'][0];
-        const { fullName, email,phone,coverLetters } = req.body;
+        const CV = req.files['cv'][0];
+        const { fullName, email,phone } = req.body;
         
         if(!fullName)
         {
