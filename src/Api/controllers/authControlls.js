@@ -3,10 +3,10 @@ const userModel = require('../Models/user.models');
 const bcrypt = require('bcrypt')
 
 const newUser = async (req,res)=>{
-        const { username,email,password } = req.body;
-        if(!username)
+        const { firstname, lastname,email,password } = req.body;
+        if(!firstname || !lastname)
         {
-            return res.send("Please provide the User Name!").status(400);
+            return res.send("Please provide the full Name!").status(400);
         }
         if(!email)
         {

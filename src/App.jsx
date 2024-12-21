@@ -48,7 +48,7 @@ const App =() =>{
         <Route path="/sign-up" element={<Signup />} />
         {/* Pages */}
         <Route path="/jobs" element={<Jobs jobs={jobs} />} /> 
-        <Route path="/job-info" element={<JobInfo />} />
+        <Route path="/job-info/:id" element={<JobInfo />} />
         <Route path="/contact-us" element={<Contactus />} />
         <Route path="/about-us" element={<Aboutus />} />
         {/* Not Found */}
@@ -61,6 +61,15 @@ const App =() =>{
       </Routes>
       <Footer />
     </Router>
+    // <div className="flex gap-4">
+    //           <button
+    //             onClick={() => setIsApplyModalOpen(true)}
+    //             className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+    //           >
+    //             <FiSend className="w-5 h-5" />
+    //             Apply Now
+    //           </button>
+    //         </div>
   );
 }
 

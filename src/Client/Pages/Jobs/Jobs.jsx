@@ -6,15 +6,6 @@ import { sortByTime } from "../../Utilities/SortByTime.js";
 import Sidebar from "../../Components/Sidebar/Sidebar.jsx";
 import { FaChevronDown } from "react-icons/fa";
 
-const photos = [
-  {photo : "/public/jobIcon/Logo (1).png"},
-  {photo : "/public/jobIcon/Logo (2).png"},
-  {photo : "/public/jobIcon/Logo (3).png"},
-  {photo : "/public/jobIcon/Logo (4).png"},
-  {photo : "/public/jobIcon/Logo (5).png"},
-  {photo : "/public/jobIcon/Logo (6).png"},
-];
-
 const Jobs = ({ jobs }) => {
   
   const [dropdown, setDropdown] = useState(false);
@@ -66,12 +57,11 @@ const Jobs = ({ jobs }) => {
   });
 
 
-  const JobsList = filteredJobs.slice(0, visibleJobsCount).map((job, index) => (
+  const JobsList = filteredJobs.slice(0, visibleJobsCount).map((job) => (
     <Job 
       key={job.id} 
       id={job.id} 
       job={job} 
-      photo={photos[index % photos.length]}
     />
   ));
 

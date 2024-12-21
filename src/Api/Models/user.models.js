@@ -20,8 +20,9 @@ const UserSchema = new Schema(
     phone: { type: String , required: true},
     birthday: { type: String , required: true},
 
-    profilePic: { type: String ,default :"/profile/OIP.jfif"},
-    coverPic: { type: String ,default :"/public/profile/photo-1532012197267-da84d127e765.jpeg"},
+    
+    profilePic:{ type: Buffer},
+    coverPic:{ type: Buffer},
 
     isEmployer: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true },

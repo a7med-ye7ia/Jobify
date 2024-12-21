@@ -5,9 +5,14 @@ import { LuWalletMinimal } from "react-icons/lu";
 import { TbClockHour4 } from "react-icons/tb";
 import { BsBookmarkPlusFill } from "react-icons/bs";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Job = ({ job, photo }) => {
+const Job = ({ job }) => {
     const [bookmark, setBookmark] = useState(false);
+    const navigate = useNavigate();
+    const handleJobDetails = () => {
+        navigate(`/job-info/${job._id}`);
+    };
 
     const toggleBookmark = () => {
         setBookmark(!bookmark);
@@ -34,8 +39,8 @@ const Job = ({ job, photo }) => {
                 <div className="flex items-start gap-4 mb-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full">
                         <img
-                            src={photo?.photo || job.photo}
-                            alt="company logo" 
+                            src={job.photo}
+                            alt="company logo"
                         />
                     </div>
                     <div>
@@ -66,11 +71,12 @@ const Job = ({ job, photo }) => {
 
                 {/* Job Details Button */}
                 <div className="w-full text-right">
-                    <a href="/job-info">
-                        <button className="w-32 h-10 rounded-lg font-semibold text-sm sm:text-base bg-[#309689] text-white border-[2px] hover:bg-white hover:border-[#309689] hover:text-[#309689]">
-                            Job Details
-                        </button>
-                    </a>
+                    <button
+                        onClick={handleJobDetails}
+                        className="w-32 h-10 rounded-lg font-semibold text-sm sm:text-base bg-[#309689] text-white border-[2px] hover:bg-white hover:border-[#3EB489] hover:text-[#3EB489]"
+                    >
+                        Job Details
+                    </button>
                 </div>
             </div>
         </div>

@@ -17,9 +17,14 @@ const JobSchema=new Schema(
         location: {type: String, required: false},
         skills: {type: Array, required: false},  
         salary: {type: Number, required: false},
+<<<<<<< HEAD
         timeadded: {type:String, required: true},
         degree: {type:String, required: false},
         catigory: {type:String, required: false}
+=======
+        photo: { type: String ,default :"/public/jobIcon/Logo (1).png"},    
+        timeadded: {type:String, required: true}
+>>>>>>> main
 },{
     timestamps: true
 }
