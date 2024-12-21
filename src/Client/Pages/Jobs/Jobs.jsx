@@ -13,7 +13,7 @@ const Jobs = ({ jobs }) => {
   const [sortByOldest, setSortByOldest] = useState(false);
   const [Search, setSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [visibleJobsCount, setVisibleJobsCount] = useState(4); // Initial number of visible jobs
+  const [visibleJobsCount, setVisibleJobsCount] = useState(4); 
 
   const toggleDropdown = () => {
     setDropdown(!dropdown);

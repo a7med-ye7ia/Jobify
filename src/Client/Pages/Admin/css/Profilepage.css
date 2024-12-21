@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #f9fafb; /* لون خلفية خفيف */
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  width: 100%;
+  max-width: 18rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف */
+}
+
+.menu-item {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0.5rem 0; /* تقليل المسافة بين العناصر */
+  color: #4b5563; /* text-gray-600 */
+  display: flex;
+  align-items: center;
+}
+
+.menu-item.active {
+  background-color: #d1fae5; /* bg-emerald-100 */
+  color: #309689;
+  font-weight: bold; /* جعل النص غامقًا للعنصر النشط */
+}
+
+.menu-item:hover {
+  background-color: #309689;
+  color: #f0fdf4; /* text-emerald-50 */
+}
+
+.content {
+  flex: 1;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف */
+}

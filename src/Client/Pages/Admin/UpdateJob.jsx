@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./css/Updatejob.css";
 
 const UpdateJob = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [image, setImage] = useState(null); // حالة جديدة لتخزين الصورة
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchJobs();
@@ -21,7 +22,7 @@ const UpdateJob = () => {
 
   const handleSelect = (job) => {
     setSelectedJob(job);
-    setImage(null); // إعادة تعيين الصورة عند اختيار وظيفة جديدة
+    setImage(null);
   };
 
   const handleChange = (e) => {
@@ -35,9 +36,9 @@ const UpdateJob = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result); // تخزين الصورة بتنسيق Base64
+        setImage(reader.result);
       };
-      reader.readAsDataURL(file); // قراءة الصورة وتحويلها إلى Base64
+      reader.readAsDataURL(file);
     }
   };
 
@@ -45,14 +46,12 @@ const UpdateJob = () => {
     e.preventDefault();
     const formData = new FormData();
 
-    // إضافة بيانات الوظيفة إلى FormData
     for (const key in selectedJob) {
       formData.append(key, selectedJob[key]);
     }
 
-    // إضافة الصورة إذا كانت موجودة
     if (image) {
-      formData.append("image", image); // هنا نضيف الصورة بتنسيق Base64
+      formData.append("image", image);
     }
 
     try {
@@ -68,7 +67,7 @@ const UpdateJob = () => {
       alert("Job updated successfully!");
       fetchJobs();
       setSelectedJob(null);
-      setImage(null); // إعادة تعيين الصورة
+      setImage(null);
     } catch (error) {
       console.error("Error updating job:", error);
       alert("Failed to update job");
@@ -76,21 +75,18 @@ const UpdateJob = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Update Job</h2>
+    <div className="container">
+      <h2 className="title">Update Job</h2>
       {!selectedJob ? (
-        <ul className="space-y-4">
+        <ul className="job-list">
           {jobs.map((job) => (
-            <li
-              key={job._id}
-              className="flex justify-between items-center border p-4 rounded"
-            >
+            <li key={job._id} className="job-item">
               <span>
                 {job.title} - {job.company}
               </span>
               <button
                 onClick={() => handleSelect(job)}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="button-update"
               >
                 Update
               </button>
@@ -98,14 +94,14 @@ const UpdateJob = () => {
           ))}
         </ul>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="form">
           <input
             type="text"
             name="title"
             value={selectedJob.title}
             onChange={handleChange}
             placeholder="Job Title"
-            className="w-full p-2 border rounded"
+            className="input"
             required
           />
           <input
@@ -114,7 +110,7 @@ const UpdateJob = () => {
             value={selectedJob.position}
             onChange={handleChange}
             placeholder="Job Position"
-            className="w-full p-2 border rounded"
+            className="input"
             required
           />
           <input
@@ -123,7 +119,7 @@ const UpdateJob = () => {
             value={selectedJob.type}
             onChange={handleChange}
             placeholder="Job Type"
-            className="w-full p-2 border rounded"
+            className="input"
           />
           <input
             type="text"
@@ -131,14 +127,14 @@ const UpdateJob = () => {
             value={selectedJob.company}
             onChange={handleChange}
             placeholder="Company"
-            className="w-full p-2 border rounded"
+            className="input"
           />
           <textarea
             name="description"
             value={selectedJob.description}
             onChange={handleChange}
             placeholder="Job Description"
-            className="w-full p-2 border rounded"
+            className="textarea"
             required
           ></textarea>
           <textarea
@@ -146,14 +142,14 @@ const UpdateJob = () => {
             value={selectedJob.requirements}
             onChange={handleChange}
             placeholder="Job Requirements"
-            className="w-full p-2 border rounded"
+            className="textarea"
           ></textarea>
           <textarea
             name="responsibilities"
             value={selectedJob.responsibilities}
             onChange={handleChange}
             placeholder="Job Responsibilities"
-            className="w-full p-2 border rounded"
+            className="textarea"
           ></textarea>
           <input
             type="text"
@@ -161,7 +157,7 @@ const UpdateJob = () => {
             value={selectedJob.tags}
             onChange={handleChange}
             placeholder="Tags (comma-separated)"
-            className="w-full p-2 border rounded"
+            className="input"
           />
           <input
             type="text"
@@ -169,7 +165,7 @@ const UpdateJob = () => {
             value={selectedJob.location}
             onChange={handleChange}
             placeholder="Job Location"
-            className="w-full p-2 border rounded"
+            className="input"
           />
           <input
             type="text"
@@ -177,7 +173,7 @@ const UpdateJob = () => {
             value={selectedJob.skills}
             onChange={handleChange}
             placeholder="Required Skills (comma-separated)"
-            className="w-full p-2 border rounded"
+            className="input"
           />
           <input
             type="number"
@@ -185,26 +181,22 @@ const UpdateJob = () => {
             value={selectedJob.salary}
             onChange={handleChange}
             placeholder="Salary"
-            className="w-full p-2 border rounded"
+            className="input"
           />
-          {/* حقل إدخال الصورة */}
           <input
             type="file"
             name="image"
             onChange={handleImageChange}
-            className="w-full p-2 border rounded"
+            className="file-input"
           />
-          <div className="flex justify-between">
-            <button
-              type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded"
-            >
+          <div className="button-container">
+            <button type="submit" className="button-submit">
               Update Job
             </button>
             <button
               type="button"
               onClick={() => setSelectedJob(null)}
-              className="bg-gray-500 text-white px-4 py-2 rounded"
+              className="button-cancel"
             >
               Cancel
             </button>

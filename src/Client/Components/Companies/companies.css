@@ -1,0 +1,54 @@
+.companies-section {
+  background-color: #ebf5f4;
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+
+.companies-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.companies-header-text {
+  text-align: center;
+}
+
+.companies-title {
+  font-weight: bold;
+  font-size: 50px;
+  color: black;
+}
+
+.companies-description {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (min-width: 640px) {
+  .companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .companies-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

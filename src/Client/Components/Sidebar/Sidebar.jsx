@@ -1,4 +1,5 @@
 import React from "react";
+import "./Sidebar.css"; 
 
 const Sidebar = ({
   Search,
@@ -7,53 +8,54 @@ const Sidebar = ({
   setSelectedCategories,
 }) => {
   const categories = [
-    { name: "Commerce", count: 10 },
-    { name: "Telecommunications", count: 10 },
-    { name: "Hotels & Tourism", count: 10 },
-    { name: "Education", count: 10 },
-    { name: "Financial Services", count: 10 },
+    { name: "Commerce" },
+    { name: "Telecommunications" },
+    { name: "Hotels & Tourism" },
+    { name: "Education" },
+    { name: "Financial Services" },
   ];
 
   const checkcategory = (categoryName) => {
-    setSelectedCategories((prev) =>
-      prev.includes(categoryName)
-        ? prev.filter((item) => item !== categoryName)
-        : [...prev, categoryName]
-    );
+    setSelectedCategories((prev) => {
+      if (prev.includes(categoryName)) {
+        return prev.filter((item) => item !== categoryName);
+      } else {
+        // إذا لم تكن الفئة موجودة، أضفها
+        return [...prev, categoryName];
+      }
+    });
   };
 
+
   return (
-    <div className="col-span-1 bg-gray-100 p-4 rounded-lg shadow-md">
-      <p className="font-semibold">Filters</p>
-      <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow">
+    <div className="sidebar-container">
+      <p className="filters-title">Filters</p>
+      <div className="filters-box">
         {/* // ! search */}
-        <div className="mb-6">
-          <h2 className="text-xl font-bold mb-4">Search by Job Title</h2>
+        <div className="search-section">
+          <h2 className="search-title">Search by Job Title</h2>
           <input
             type="text"
             placeholder="Job title or company"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+            className="search-input"
             value={Search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 
-{/* // ! category */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">Category</h3>
+        {/* // ! category */}
+        <div className="category-section">
+          <h3 className="category-title">Category</h3>
           {categories.map((category) => (
-            <div
-              key={category.name}
-              className="flex items-center justify-between mb-2"
-            >
-              <label className="flex items-center">
+            <div key={category.name} className="category-item">
+              <label className="checkbox-label">
                 <input
                   type="checkbox"
-                  className="form-checkbox h-4 w-4 text-teal-600 rounded"
+                  className="checkbox-input"
                   checked={selectedCategories.includes(category.name)}
                   onChange={() => checkcategory(category.name)}
                 />
-                <span className="ml-2 text-gray-700">{category.name}</span>
+                <span className="checkbox-text">{category.name}</span>
               </label>
             </div>
           ))}
