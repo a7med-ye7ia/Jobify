@@ -5,7 +5,6 @@ import "./css/Updatejob.css";
 const UpdateJob = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchJobs();
@@ -22,52 +21,23 @@ const UpdateJob = () => {
 
   const handleSelect = (job) => {
     setSelectedJob(job);
-    setImage(null);
   };
 
   const handleChange = (e) => {
-    let value;
-    value = e.target.value;
+    const value = e.target.value;
     setSelectedJob({ ...selectedJob, [e.target.name]: value });
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-
-    for (const key in selectedJob) {
-      formData.append(key, selectedJob[key]);
-    }
-
-    if (image) {
-      formData.append("image", image);
-    }
-
     try {
       await axios.put(
         `http://localhost:3000/job/updatejob/${selectedJob._id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        selectedJob
       );
       alert("Job updated successfully!");
       fetchJobs();
       setSelectedJob(null);
-      setImage(null);
     } catch (error) {
       console.error("Error updating job:", error);
       alert("Failed to update job");
@@ -76,7 +46,6 @@ const UpdateJob = () => {
 
   return (
     <div className="container">
-      <h2 className="title">Update Job</h2>
       {!selectedJob ? (
         <ul className="job-list">
           {jobs.map((job) => (
@@ -182,12 +151,6 @@ const UpdateJob = () => {
             onChange={handleChange}
             placeholder="Salary"
             className="input"
-          />
-          <input
-            type="file"
-            name="image"
-            onChange={handleImageChange}
-            className="file-input"
           />
           <div className="button-container">
             <button type="submit" className="button-submit">

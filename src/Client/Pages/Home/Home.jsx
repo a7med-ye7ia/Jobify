@@ -1,14 +1,19 @@
-import {JOB} from "../Jobs/job.js"
 import Job from "../../Components/Job/Job.jsx";
 import "./Home.css";
 import Category from "./Category";
 import Navbar from "../../Components/Navbar/Navbar";
 import Blog from "../../Components/Blogs/Blog.jsx";
 
-const Home = () => {
-  const recentJobsList = JOB.map((job, index) => {
-    return <Job key={index} job={job} />;
-});
+const Home = ({ jobs }) => {
+  const getRecentJobs = (jobs) => {
+    return jobs
+      .sort((a, b) => new Date(b.timeadded) - new Date(a.timeadded))
+      .slice(0, 5);
+  };
+
+  const recentJobsList = getRecentJobs(jobs).map((job) => (
+    <Job key={job._id} job={job} />
+  ));
 
   return (
     <div>
@@ -73,10 +78,7 @@ const Home = () => {
               src="https://assets.asana.biz/transform/ba9b63a3-f255-4088-b5fe-14ab4628f50b/asana-logo-black"
               alt="Asana"
             />
-            <img
-              src="https://linear.app/static/linear-logo.svg"
-              alt="Linear"
-            />
+            <img src="https://linear.app/static/linear-logo.svg" alt="Linear" />
           </div>
         </div>
       </div>
