@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const userUpdate = async (req, res) => {
     try {
         const id = req.params.id;
+        const new_personalPhoto = req.files['profilePic'][0];
+        const new_backgroundPhoto = req.files['coverPic'][0];
         const { currentPassword, newPassword, ...otherFields } = req.body;
 
         // Find the user in the database
@@ -39,10 +41,16 @@ const userUpdate = async (req, res) => {
 
         // Update the user
         const updatedUser = await userModel.findByIdAndUpdate(
-            id, 
-            { $set: otherFields }, // Ensure we are updating only the fields passed
+            id,
             { 
-                new: true,  // Return the updated document
+                $set: { 
+                    ...otherFields,
+                    profilePic: new_personalPhoto.buffer,
+                    coverPic: new_backgroundPhoto.buffer
+                }
+            },
+            { 
+                new: true, // Return the updated document
                 select: '-password' // Exclude password from returned document
             }
         );
@@ -50,7 +58,6 @@ const userUpdate = async (req, res) => {
         if (!updatedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
-
         res.status(200).json(updatedUser);
 
     } catch (error) {
