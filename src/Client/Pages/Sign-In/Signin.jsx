@@ -1,76 +1,90 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import styles from './styles.module.css'; 
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './styles.module.css';
 
-const Signin = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: ""
-  });
-  const [error, setError] = useState("");
+const Login = () => {
+    const [data, setData] = useState({
+        username: "",
+        password: ""
+    });
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const url = "http://localhost:3000/auth/login";   
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
-      window.location = "/";
-    } catch (error) {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setError(error.response.data.message);
-      }
-    }
-  };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value });
+    };
 
-  return (
-    <div className={styles.login_container}>
-      <div className={styles.login_form_container}>
-        <div className={styles.left}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Hello!</h1>
-            <p> sign-in with your account</p>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              name="email"
-              onChange={handleChange}
-              value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Enter your password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-            />
-            {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
-              Log In
-            </button>
-          </form>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(""); // Reset error on new submit
+        try {
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Login failed');
+            }
+
+            const result = await response.json();
+            console.log("Login successful:", result);
+            navigate("/"); // Or wherever the user is redirected after login
+        } catch (err) {
+            setError(err.message || "Something went wrong. Please try again.");
+        }
+    };
+
+    return (
+        <div className={styles.login_container}>
+            <div className={styles.login_form_container}>
+                {/* Left Panel */}
+                <div className={styles.left}>
+                    <form className={styles.form_container} onSubmit={handleSubmit}>
+                        <h1>Login</h1>
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            name="username"
+                            onChange={handleChange}
+                            value={data.username}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            onChange={handleChange}
+                            value={data.password}
+                            required
+                            className={styles.input}
+                        />
+                        {error && <div className={styles.error_msg}>{error}</div>}
+                        <button type="submit" className={styles.green_btn}>
+                            Login
+                        </button>
+                        <Link to="/sign-up">
+                            <button type="button" className={styles.white_btn}>
+                                Create Account
+                            </button>
+                        </Link>
+                    </form>
+                </div>
+
+                {/* Right Panel */}
+                <div className={styles.right}>
+                    <h1>Welcome Back!</h1>
+                </div>
+            </div>
         </div>
-        <div className={styles.right}>
-          <h1>New Here?</h1>
-          <Link to="/sign-up">
-            <button type="button" className={styles.white_btn}>
-              Create an Account
-            </button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default Signin;
-
+export default Login;

@@ -1,71 +1,97 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styles from './styles.module.css';
 
 const Signup = () => {
     const [data, setData] = useState({
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
+        username: "",
         email: "",
-        password: ""
+        password: "",
+        country: "",
+        city: "",
+        phone: "",
+        birthdate: "",
+        education: ""
     });
 
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Data being sent:", data);
+        setError(""); // Reset error on new submit
         try {
-            const url = "http://localhost:3000/auth/register";
-            const { data: res } = await axios.post(url, data);
-            navigate("/sign-in");
-            console.log(res.message);
-        } catch (error) {
-            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-                setError(error.response.data.message);
+            const response = await fetch('http://localhost:3000/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Registration failed');
             }
+
+            const result = await response.json();
+            console.log("Registration successful:", result);
+            navigate("/sign-in");
+        } catch (err) {
+            setError(err.message || "Something went wrong. Please try again.");
         }
     };
 
     return (
-   
         <div className={styles.signup_container}>
             <div className={styles.signup_form_container}>
+                {/* Left Panel */}
                 <div className={styles.left}>
                     <h1>Welcome...!</h1>
-                    <p>if you have an Account</p>
+                    <p>If you have an account:</p>
                     <Link to="/sign-in">
                         <button type="button" className={styles.white_btn}>
                             Sign In
                         </button>
                     </Link>
                 </div>
-             
 
+                {/* Right Panel */}
                 <div className={styles.right}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
                         <h1>Create Account</h1>
+                        
                         <input
                             type="text"
                             placeholder="First Name"
-                            name="firstName"
+                            name="firstname"
                             onChange={handleChange}
-                            value={data.firstName}
+                            value={data.firstname}
                             required
                             className={styles.input}
                         />
                         <input
                             type="text"
                             placeholder="Last Name"
-                            name="lastName"
+                            name="lastname"
                             onChange={handleChange}
-                            value={data.lastName}
+                            value={data.lastname}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            name="username"
+                            onChange={handleChange}
+                            value={data.username}
                             required
                             className={styles.input}
                         />
@@ -87,12 +113,58 @@ const Signup = () => {
                             required
                             className={styles.input}
                         />
+                        <input
+                            type="text"
+                            placeholder="Country"
+                            name="country"
+                            onChange={handleChange}
+                            value={data.country}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="City"
+                            name="city"
+                            onChange={handleChange}
+                            value={data.city}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Phone"
+                            name="phone"
+                            onChange={handleChange}
+                            value={data.phone}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="date"
+                            placeholder="Birthdate"
+                            name="birthdate"
+                            onChange={handleChange}
+                            value={data.birthdate}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Education"
+                            name="education"
+                            onChange={handleChange}
+                            value={data.education}
+                            required
+                            className={styles.input}
+                        />
+                        
                         {error && <div className={styles.error_msg}>{error}</div>}
+
                         <button type="submit" className={styles.green_btn}>
                             Sign Up
                         </button>
                     </form>
-
                 </div>
             </div>
         </div>

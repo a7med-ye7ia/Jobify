@@ -1,17 +1,20 @@
 .login_container {
     width: 100%;
     min-height: 100vh;
-    background-color: #3bb19b ;
+    background-color: #3bb19b;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Arial', sans-serif;
+    padding: 20px;
 }
 
 .login_form_container {
-    width: 900px;
-    height: 550px;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
     display: flex;
+    flex-wrap: wrap;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -24,8 +27,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
     padding: 30px;
+    background-color: white;
 }
 
 .form_container {
@@ -119,4 +122,30 @@
 .white_btn:hover {
     background-color: #f1f1f1;
     color: #2a897b;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login_form_container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .left, .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form_container h1 {
+        font-size: 28px;
+    }
+
+    .input {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .green_btn, .white_btn {
+        width: 90%;
+    }
 }
