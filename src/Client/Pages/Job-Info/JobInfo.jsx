@@ -11,6 +11,7 @@ import {
   FiBookmark,
 } from "react-icons/fi";
 import UI from "./ui";
+import "./JobInfo.css";
 
 function JobInfo() {
   const { id } = useParams();
@@ -35,112 +36,102 @@ function JobInfo() {
   }, [id]);
 
   if (!job) {
-    return <p className="text-red-500">Loading job information...</p>;
+    return <p className="loading-error">Loading job information...</p>;
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="p-8">
-          <div className="flex justify-between items-start mb-6">
-            <div className="flex items-center gap-4">
+    <div className="job-info-container">
+      <div className="job-info-card">
+        <div className="job-info-content">
+          <div className="job-header">
+            <div className="job-title-section">
               <img src={job.photo} alt="logo" />
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">
-                {job.title}
-              </h1>
-              <p className="text-lg text-slate-600">{job.company}</p>
+              <h1 className="job-title">{job.title}</h1>
+              <p className="job-company">{job.company}</p>
             </div>
-            <div className="flex gap-2">
-              <button className="p-2 hover:bg-slate-100 rounded-full">
-                <FiBookmark className="w-5 h-5 text-slate-600" />
+            <div className="job-actions">
+              <button className="bookmark-button">
+                <FiBookmark className="bookmark-icon" />
               </button>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="job-tags">
             {job.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700"
-              >
-                <FiTag className="w-4 h-4 mr-1" />
+              <span key={index} className="job-tag">
+                <FiTag className="tag-icon" />
                 {tag}
               </span>
-              
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <FiBriefcase className="w-5 h-5 text-blue-600" />
+          <div className="job-details-grid">
+            <div className="job-detail-item">
+              <div className="detail-icon-container">
+                <FiBriefcase className="detail-icon" />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Company</p>
-                <p className="font-medium text-slate-900">{job.company}</p>
+                <p className="detail-label">Company</p>
+                <p className="detail-value">{job.company}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <FiMapPin className="w-5 h-5 text-blue-600" />
+            <div className="job-detail-item">
+              <div className="detail-icon-container">
+                <FiMapPin className="detail-icon" />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Location</p>
-                <p className="font-medium text-slate-900">{job.location}</p>
+                <p className="detail-label">Location</p>
+                <p className="detail-value">{job.location}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <FiDollarSign className="w-5 h-5 text-blue-600" />
+            <div className="job-detail-item">
+              <div className="detail-icon-container">
+                <FiDollarSign className="detail-icon" />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Salary</p>
-                <p className="font-medium text-slate-900">{job.salary}</p>
+                <p className="detail-label">Salary</p>
+                <p className="detail-value">{job.salary}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <FiCalendar className="w-5 h-5 text-blue-600" />
+            <div className="job-detail-item">
+              <div className="detail-icon-container">
+                <FiCalendar className="detail-icon" />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Posted</p>
-                <p className="font-medium text-slate-900">
+                <p className="detail-label">Posted</p>
+                <p className="detail-value">
                   {new Date(job.timeadded).toLocaleDateString()}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">
-              Job Description
-            </h2>
-            <p className="text-slate-600 leading-relaxed">{job.description}</p>
+          <div className="job-description-section">
+            <h2 className="section-title">Job Description</h2>
+            <p className="job-description">{job.description}</p>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">
-              Required Skills
-            </h2>
-            <div className="space-y-3">
+          <div className="job-skills-section">
+            <h2 className="section-title">Required Skills</h2>
+            <div className="skills-list">
               {job.skills.map((skill, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <FiBook className="w-5 h-5 text-blue-600" />
-                  <span className="text-slate-600">{skill}</span>
+                <div key={index} className="skill-item">
+                  <FiBook className="skill-icon" />
+                  <span className="skill-text">{skill}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="job-apply-section">
             <button
               onClick={() => setIsApplyModalOpen(true)}
-              className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+              className="apply-button"
             >
-              <FiSend className="w-5 h-5" />
+              <FiSend className="apply-icon" />
               Apply Now
             </button>
           </div>

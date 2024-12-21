@@ -3,8 +3,14 @@ import ProfileCard from "./componnents_Admin/ProfileCard";
 import DeleteJob from "./DeleteJob";
 import AddJob from "./AddJob";
 import UpdateJob from "./UpdateJob";
+import "./css/ProfilePage.css"; 
 
 const menuItems = [
+  {
+    id: 3,
+    text: "Update Job",
+    component: <UpdateJob />,
+  },
   {
     id: 1,
     text: "Delete Job",
@@ -15,42 +21,32 @@ const menuItems = [
     text: "Add Job",
     component: <AddJob />,
   },
-  {
-    id: 3,
-    text: "Update Job",
-    component: <UpdateJob />,
-  },
 ];
 
 const ProfilePage = () => {
-  const [activeItem, setActiveItem] = useState(1);
+  const [activeItem, setActiveItem] = useState(3); // Set default active item to "Update Job"
 
   const handleClick = (id) => {
     setActiveItem(id);
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
-      <div className="w-full md:w-72 bg-white rounded-lg p-4 space-y-4">
+    <div className="container">
+      <div className="sidebar">
         <ProfileCard />
         <div>
           {menuItems.map((item) => (
             <div
               key={item.id}
               onClick={() => handleClick(item.id)}
-              className={`p-3 rounded-lg cursor-pointer transition-colors m-3
-              ${
-                activeItem === item.id
-                  ? "bg-emerald-100 text-[#309689]"
-                  : "hover:bg-[#309689] hover:text-emerald-50 text-gray-600"
-              }`}
+              className={`menu-item ${activeItem === item.id ? "active" : ""}`}
             >
               <span className="text-sm font-medium">{item.text}</span>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex-1">
+      <div className="content">
         {menuItems.find((item) => item.id === activeItem)?.component}
       </div>
     </div>

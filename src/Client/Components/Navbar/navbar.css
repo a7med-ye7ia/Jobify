@@ -130,7 +130,6 @@
   transition: all 0.3s ease;
 }
 
-/* استجابة للأجهزة الصغيرة */
 @media (max-width: 768px) {
   .navbar {
     padding: 1rem 2rem;
@@ -142,7 +141,7 @@
 
   .navbar-center {
     position: absolute;
-    top: 60px; /* جعل القائمة تظهر أسفل الشريط العلوي */
+    top: 60px; 
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.9);
@@ -176,7 +175,7 @@
   }
 
   .login-btn, .register-btn {
-    width: 100%; /* تأكد من أن الأزرار تأخذ عرض جيد */
+    width: 100%; 
     padding: 0.5rem;
   }
 }

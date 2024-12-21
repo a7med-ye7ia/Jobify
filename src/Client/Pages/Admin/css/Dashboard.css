@@ -1,29 +1,39 @@
+/* Base Styles */
 .full-screen {
   min-height: 100vh;
+  width: 100%;
 }
 
 .bg-light {
   background-color: #f3f4f6;
 }
 
+/* Hero Section */
 .hero {
   height: 12rem; 
   background-image: url('/profile/photo-1532012197267-da84d127e765.jpeg');
   background-size: cover;
   background-position: center;
   position: relative;
+  overflow: hidden;
 }
 
 .hero-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
 }
 
+/* Profile Section */
 .profile {
   max-width: 112rem; 
   margin: 0 auto;
   padding: 0 1rem; 
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .profile-container {
@@ -36,11 +46,19 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
 }
 
+/* Responsive Breakpoints */
 @media (min-width: 640px) {
   .profile {
     padding: 0 1.5rem; 
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-content {
+    flex-direction: row;
   }
 }
 
@@ -50,8 +68,13 @@
   }
 }
 
-@media (min-width: 768px) {
-  .profile-content {
-    flex-direction: row;
-  }
+/* Additional Improvements */
+.profile-content > * {
+  flex: 1;
+}
+
+/* Ensure responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
 }

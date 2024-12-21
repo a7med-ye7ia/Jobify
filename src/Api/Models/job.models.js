@@ -12,13 +12,12 @@ const JobSchema=new Schema(
         company: {type: String, required: false},
         description: {type: String, required: true},//required
         requirements: {type: String, required: false},
-        responsibilities: {type: String, required: false},
         tags: {type: Array, required: false},
         location: {type: String, required: false},
         skills: {type: Array, required: false},  
         salary: {type: Number, required: false},
+        category: { type: String, required: false },
         photo: { type: String ,default :"/public/jobIcon/Logo (1).png"},    
-        timeadded: {type:String, required: true}
 },{
     timestamps: true
 }
