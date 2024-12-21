@@ -9,33 +9,36 @@ const ApplicationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
         match: [/\S+@\S+\.\S+/, 'is invalid'] // Email validation
     },
     phone: {
         type: String,
         required: true,
-        trim: true,
         match: [/^\d{10,15}$/, 'Phone number must be valid'] // Validates phone numbers between 10-15 digits
     },
     cv: {
         type: Buffer,
-        required: true
+<<<<<<< HEAD
+        required: false,
     },
     coverLetters: [{
         title: {
             type: String,
-            required: true
+            required: false,
         },
         content: {
             type: String,
-            required: true
+            required: false
         },
         submittedAt: {
             type: Date,
             default: Date.now
         }
     }]
+=======
+    },
+    coverLetters: {type : String}
+>>>>>>> Adham
 }, {
     timestamps: true 
 });

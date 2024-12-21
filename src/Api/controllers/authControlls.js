@@ -1,53 +1,108 @@
 /* eslint-disable no-undef */
 const userModel = require('../Models/user.models');
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken'); 
 
-const newUser = async (req,res)=>{
-        const { firstname, lastname,email,password } = req.body;
-        if(!firstname || !lastname)
-        {
-            return res.send("Please provide the full Name!").status(400);
+
+const newUser = async (req, res) => {
+    const { username, firstname, lastname, email, password } = req.body;
+
+    if (!username) {
+        return res.status(400).send("Please provide a username!");
+    }
+    if (!firstname || !lastname) {
+        return res.status(400).send("Please provide the full name!");
+    }
+    if (!email) {
+        return res.status(400).send("Please provide the email!");
+    }
+    if (!password) {
+        return res.status(400).send("Please provide the password!");
+    }
+
+    // validation checks for username and password
+    const usernameValidation = /^[a-zA-Z0-9]+$/;
+    const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    if (!usernameValidation.test(username)) {
+        return res.status(400).send("Username can only contain alphanumeric characters and must be between 3-20 characters.");
+    }
+    if (!passwordValidation.test(password)) {
+        return res.status(400).send("Password must contain at least 8 characters, including an uppercase letter, a lowercase letter, a number, and a special character.");
+    }
+
+    try {
+        // Check if the user already exists
+        const existingUser = await userModel.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send("User already exists!");
         }
-        if(!email)
-        {
-            return res.send("Please provide the E-mail!").status(400);
-        }
-        if(!password)
-        {
-            return res.send("Please provide the Password!").status(400);
-        }
-        const existingUser = await userModel.findOne({email});
-        if(existingUser){
-            return res.send("User already exists!").status(400);
-        }
-        const user = await userModel.create(req.body);
+
+        const user = new userModel(req.body);
+
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);    
-        await user.save();
-        res.send({msg:'Registered successfully',user}).status(201);
-}
+        user.password = await bcrypt.hash(user.password, salt);
 
-const login = async(req,res)=>{
-    const {email,password} = req.body;
-    if(!email)
-    {
-        return res.send("Please provide the E-mail!").status(400);
+        await user.save();
+        res.status(201).send({ msg: "Registered successfully", user });
+    } catch (error) {
+        res.status(500).send("Server error: " + error.message);
     }
-    if(!password)
-    {
-        return res.send("Please provide the Password!").status(400);
+};
+
+
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Validate input
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+        if (!password) {
+            return res.status(400).json({ message: "Password is required" });
+        }
+
+        // Find user
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { 
+                id: user._id, 
+                email: user.email 
+            }, 
+            'YOUR_SECRET_KEY',
+            { expiresIn: '1h' }
+        );
+
+        // Send response
+        res.status(200).json({
+            message: 'Login successful',
+            token,
+            user: {
+                id: user._id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email
+            }
+        });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ 
+            message: "Server error during login",
+            error: error.message 
+        });
     }
-    const user = await userModel.findOne({email});
-    if(!user){
-        return res.send("User doesn't exist, Please try signing up!").status(404);
-    }
- 
-    const isMatch =await bcrypt.compare(password , user.password);    ;
-    if(!isMatch)
-    {
-        return res.send("Incorrect Password!").status(404);
-    }
-    res.json({msg:'Login successful',user}).status(200);
-}
+};
 
 module.exports = {newUser,login};
